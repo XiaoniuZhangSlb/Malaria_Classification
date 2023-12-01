@@ -124,6 +124,7 @@
     -- option 2: use Yolov8 model for object detection purposes and the additional deep learning model for the classification of the stages
   - Integrate malaria vivax samples from other datasets and test model performance
 
+
 # Overall Tasks
   - [x] Initial git repo
   - [x] data exploration in notebooks
