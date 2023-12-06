@@ -29,7 +29,7 @@ class Prediction():
         return config.species_model_classes[index], max(predictions[0])
     def run_parasite_boundingbox(self,image):
         # TO-DO: call the boundingbox model to lable the parasites
-        model = torch.hub.load('yolov5', 'custom', path='yolov5/weights/species.pt', source='local')  # local repo
+        model = torch.hub.load('yolov5', 'custom', path='ml_models/yolov5_weights/species.pt', source='local')  # local repo
         model.conf = 0.25  # NMS confidence threshold
         results = model(image, size=1280)  # custom inference size
         return results
