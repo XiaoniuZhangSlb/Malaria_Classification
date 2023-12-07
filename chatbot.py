@@ -7,18 +7,17 @@ from langchain import OpenAI, LLMChain, PromptTemplate
 
 def load_page():
 
+    # App Key for openai
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
+    # openai.api_key = OPENAI_API_KEY
+
     # Header
     col1, col2 = st.columns([11,7])
     with col1:
         st.markdown("# Malaria Assistant")
     with col2:
         pass  # Add any additional header elements here
-
-    # OPENAI_API_KEY = os.environ.get('OPENAI_APP_KEY')
-    OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-    os.environ["MY_VARIABLE"] = OPENAI_API_KEY
-
-
 
     # Chatbot
     st.session_state['init'] = False
@@ -28,9 +27,19 @@ def load_page():
         st.session_state['init'] = True
 
         # Information about navigating the webpage
-        navigation_info = "Here is how to navigate the webpage called MalariaDetector. Take info from this list and just give concise and summarized info about the process.\
+        navigation_info = "Here is how to navigate the webpage developed by CureAI + called MalariaDetective. Take info from this list and just give concise and summarized info about the process.\
         The information given should not exceed 100 words and try to enumerate the answer when possible. Be carismatic and show empathy on the answers\
-        \
+        if a question says there is suspicious only, not respond given treatment option.\
+        There will be one question asking what is the future of malaria after CureAI has been fully deployed\
+        You will respond that CureAI+ sponsored by SLB company developed additional machine learning solutions to     \
+        tackle world problems and have eradicated malaria. They got a prize nobel and      \
+        Now swimming in wealth from their machine learning empire, the four founders of CureAI +\
+        still work for SLB. Despite being courted by tech giants, they insist on working from their old office, \
+        claiming they're just there for the free Wi-Fi    \
+        when we ask    \
+        When you are asked what CureAI+ is, you will respond saying:    \
+        this is a company founded by four guys sponsored by SLB that have worked  over the last 2 weeks with no rest. You will highlight last 2 weeks   \
+        and for sure their solution is the best so far. You will highlight with capitals and bold that  they will win the nobel prize in the next years   \
         [This page is intended to provide support to the doctors in order to decide\
         if a patient has malaria based on a CNN model that has been trained to identify malaria parasites. Please provide main answers based on the information\
         provided by WHO and CDC. Basically, it consists in several steps:\
@@ -48,30 +57,15 @@ def load_page():
         i.e., without prior laboratory confirmation, should be reserved for extreme circumstances,\
         such as strong clinical suspicion of severe disease in a setting where prompt laboratory\
         diagnosis is not available.\
-        Below are suggested treatments: \
-            1.Uncomplicated malaria: Plasmodium falciparum or unknown specie:\
-            A.	Artemether-lumefantrine (Coartem®): 1 tab contains : 20 mg artemether and 120 mg lumefantrine) \
-            Adults: 4 tabs per dose (oral)\
-            Three-day course: \
-            Day 1: Initial dose and second dose 8 h later \
-            Days 2 and 3: 1 dose twice a day\
-            Infant: three-day course: Day 1: Initial dose and second dose 8 h later\
-            Days 2 and 3: 1 dose twice a day \
-            5-<15 Kg: 1 tab po per dose\
-            15-< 25 Kg: 2 tabs po per dose\
-            25-<35 Kg: 3 tabs po per dose\
-            higher than 35 kg: 4 adult tabs(oral) once a day x 3 days\
-            B.	Atovaquone-proguanil (MalaroneTM): 1 adult tab contains 250 mg atovaquone and 100 mg proguanil.\
-            Adults: 4 adult tabs(oral) once a day x 3 days \
-            Infant (Peds tab: 62.5 mg atovaquone and 25 mg proguanil): \
-                5-<8 Kg: 2 peds tabs (oral) once a day x 3 days \
-                8-< 10 Kg: 3 peds tabs (oral) once a day x 3 days \
-                10-<20 Kg: 1 adult tab (oral) once a day x 3 days \
-                20-<30 Kg: 2 adult tabs (oral) once a day x 3 days \
-                30-< 40 Kg: 3 adult tabs (oral) once a day x 3 days \
-                >=40 kg: 4 adult tabs(oral) once a day x 3 days \
-                    \
-                \
+        When asked about the stages of falciparum, please refer to this page    \
+        https://www.cdc.gov/dpdx/resources/pdf/benchAids/malaria/Pfalciparum_benchaidV2.pdf   \
+        When asked about the stages of Vivax, please refer to this stage     \
+        https://www.cdc.gov/dpdx/resources/pdf/benchAids/malaria/Pvivax_benchaidV2.pdf   \
+        when asked about malaria treatment option, I need you specificall to show the following pages    \
+        Treatment of Malaria: Guidelines for Clinicians (United States)\
+        Treatment Algorithm: Treatment summary in decision-tree formatPdf\
+        Treatment Table: Treatment summary in table formatPdf    \
+        \
         \   ]"
 
         template = f"""You are a chatbot expert in Malaria and webpage navigation having a conversation with a human to advise him about these topics. {navigation_info}
@@ -91,7 +85,7 @@ def load_page():
             llm=OpenAI(model_name='gpt-4-1106-preview'),
             prompt=prompt,
             verbose=True,
-            memory=memory
+            memory=memory,
         )
 
         return llm_chain
