@@ -104,8 +104,7 @@ def load_page():
     if 'past' not in st.session_state:
         st.session_state['past'] = []
 
-    # Get user input
-    user_input = st.text_input('You:', value='', key='input')
+
 
     # Initialize the chatbot
     if st.session_state['init'] == False:
@@ -125,3 +124,5 @@ def load_page():
         for i in range(num_messages):
             message(st.session_state["past"][i], is_user=True, avatar_style="adventurer", key=f"{i}_user")
             message(st.session_state["generated"][i], is_user=False, avatar_style="bottts", key=f"{i}_bot")
+        # Get user input
+    user_input = st.text_input('You:', value='', key='input')
