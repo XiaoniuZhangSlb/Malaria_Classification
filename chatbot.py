@@ -9,7 +9,8 @@ def load_page():
 
     # App Key for openai
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-
+    if len(OPENAI_API_KEY) == 0:
+        os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
     # openai.api_key = OPENAI_API_KEY
 
     # Header
@@ -21,7 +22,7 @@ def load_page():
 
 
 
-    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+   
 
     # Chatbot
     st.session_state['init'] = False
