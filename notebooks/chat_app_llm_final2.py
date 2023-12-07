@@ -6,8 +6,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain import OpenAI, LLMChain, PromptTemplate
 
 # App Key for openai
-#OPENAI_API_KEY = os.environ.get('APP_KEY')
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.environ.get('APP_KEY')
+
 openai.api_key = OPENAI_API_KEY
 
 # Header
