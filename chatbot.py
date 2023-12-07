@@ -110,11 +110,7 @@ def load_page():
     if st.session_state['init'] == False:
         llm_chain = init()
 
-    # Generate and display responses
-    if user_input:
-        output = response(llm_chain, user_input)
-        st.session_state.past.append(user_input)
-        st.session_state.generated.append(output)
+
 
     # Display the chat interface
     if st.session_state['generated']:
@@ -124,5 +120,10 @@ def load_page():
         for i in range(num_messages):
             message(st.session_state["past"][i], is_user=True, avatar_style="adventurer", key=f"{i}_user")
             message(st.session_state["generated"][i], is_user=False, avatar_style="bottts", key=f"{i}_bot")
-        # Get user input
+    # Get user input
     user_input = st.text_input('You:', value='', key='input')
+    # Generate and display responses
+    if user_input:
+        output = response(llm_chain, user_input)
+        st.session_state.past.append(user_input)
+        st.session_state.generated.append(output)
