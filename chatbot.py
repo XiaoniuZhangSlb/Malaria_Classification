@@ -14,7 +14,7 @@ def load_page():
     with col2:
         pass  # Add any additional header elements here
 
-    st.write("secret value is:" + st.secrets)
+    st.write("secret value is:" + st.secrets['openai_key'])
     # OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
     openai_key = st.secrets["openai_key"]
     os.environ["OPENAI_API_KEY"] = openai_key
