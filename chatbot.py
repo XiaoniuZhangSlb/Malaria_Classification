@@ -19,6 +19,10 @@ def load_page():
     with col2:
         pass  # Add any additional header elements here
 
+
+
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
     # Chatbot
     st.session_state['init'] = False
 
