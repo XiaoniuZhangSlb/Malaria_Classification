@@ -14,10 +14,10 @@ def load_page():
     with col2:
         pass  # Add any additional header elements here
 
-    # OPENAI_API_KEY = os.environ.get('OPENAI_APP_KEY')
-    OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-    st.write("secret value is:" + st.secrets["OPENAI_API_KEY"])
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+    # OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+    # os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+    st.write("secret value is:" + OPENAI_API_KEY)
 
 
     # Chatbot
