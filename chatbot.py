@@ -123,5 +123,5 @@ def load_page():
         chat_columns = st.columns(2)
 
         for i in range(num_messages):
-            message(st.session_state["past"][i], is_user=False, avatar_style="adventurer")
-            message(st.session_state["generated"][i], is_user=True, avatar_style="bottts")
+            message(st.session_state["past"][i], is_user=True, avatar_style="adventurer", key=f"{i}_user")
+            message(st.session_state["generated"][i], is_user=False, avatar_style="bottts", key=f"{i}_bot")
