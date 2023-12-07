@@ -68,7 +68,7 @@ def load_page():
         \
         \   ]"
 
-        template = f"""You are a chatbot expert in Malaria and webpage navigation having a conversation with a human to advise him about these topics. {navigation_info}
+        template = f""" You are a chatbot expert in Malaria and webpage navigation having a conversation with a human to advise him about these topics. {navigation_info}
 
             {{chat_history}}
             Human: {{human_input}}
