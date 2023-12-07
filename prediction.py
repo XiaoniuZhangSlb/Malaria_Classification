@@ -30,11 +30,13 @@ class Prediction():
     def run_parasite_boundingbox(self,image):
         # TO-DO: call the boundingbox model to lable the parasites
         model = torch.hub.load('yolov5', 'custom', path='ml_models/yolov5_weights/species.pt', source='local')  # local repo
-        model.conf = 0.25  # NMS confidence threshold
+        model.conf = 0.3  # NMS confidence threshold
         results = model(image, size=1280)  # custom inference size
         return results
 
-    def run_stages_boundingbox(self,image):
+    def run_stages_classification(self,X):
         # TO-DO: call the boundingbox model to lable the stages
-        # y_pred = stages_bb_model.predict(image)
-        return image
+        predictions = self.models['stages'].predict(X)
+        print(f"stages prediction result: {predictions[0]}")
+        index = np.argmax(predictions[0])
+        return config.stages_model_classes[index], max(predictions[0])

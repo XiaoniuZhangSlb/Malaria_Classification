@@ -18,5 +18,5 @@ def load_image_data(image, ratio=1, resize=None):
     resized_image = image.resize((new_width, new_height))
 
     imgs.append(np.array(resized_image))
-    img_data = np.array(imgs)
+    img_data = np.array(imgs) / 255.
     return img_data
