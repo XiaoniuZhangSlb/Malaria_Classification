@@ -198,6 +198,7 @@ def diagnostic_page():
             img_with_boxes = Image.fromarray(r_img[0]) # image from np.array
             st.image(img_with_boxes, caption="Parasites detection with bounding box")
 
+
             if st.button("Show Parasite Cell Images and Stages"):
                 st.session_state['button_crop'] = True
             if 'button_crop' in st.session_state and st.session_state['button_crop']:
