@@ -211,7 +211,23 @@ def diagnostic_page():
                         image = Image.fromarray(crops[index]['im'])
                         stage_image_data = image_utils.load_image_data(image, resize=[100,100])
                         stages, prob = prediction.run_stages_classification(stage_image_data * 255.)
-                        cols[j].image(image, caption=f"[Stage]: {stages}", width=150)
+                        with cols[j]:
+                            st.image(image, use_column_width=True)
+                            style='''
+                            <style>.my_text {
+                                            font-family:    Arial, Helvetica, sans-serif;
+                                            font-size:      20px;
+                                            font-weight:    bold;
+                                        }
+                            </style>
+                            '''
+                            mark = f'''
+                            <html>
+                            {style}
+                            <div align="center" class="my_text">{stages}</div>
+                            </html>
+                            '''
+                            st.markdown(mark, unsafe_allow_html=True)
             report_image = image_info(img_with_boxes,"Identification", f"Indentification result: The Malaria species found in the sample is: :red[{species}]")
 
             # report_images.append(report_image)
